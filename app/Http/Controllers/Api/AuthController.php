@@ -113,6 +113,8 @@ class AuthController extends Controller
         $user->save();
 
 
+
+
         // if ($request->has('image')) {
 
         //   $image = $request->image;  // your base64 encoded

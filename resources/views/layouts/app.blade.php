@@ -113,11 +113,9 @@
 
                             <ul class=" nav navbar-nav">
                                 <li class="has-child "><a href="{ route('welcome') }}">Home</a></li>
-                                <li class="has-child"><a href="{ route('services') }}">Vendors</a>
                                 </li>
-                                <li class="has-child"><a href="{ route('blog') }}">Blog</a></li>
                                 <li><a href="{ route('contact') }}">Contact </a></li>
-                                <li><a href="{{  route('about.us')  }}">About </a></li>
+                                <li><a href="{{ route('about.us') }}">About </a></li>
                             </ul>
 
                         </div>
@@ -128,14 +126,14 @@
                                 @guest
                                     <!--Login-->
                                     <!-- <button type="button" class="site-button aon-btn-login" data-toggle="modal"
-                                        data-target="#login-signup-model">
-                                        <i class="fa fa-user"></i> Login/Register
-                                    </button> -->
+                                            data-target="#login-signup-model">
+                                            <i class="fa fa-user"></i> Login/Register
+                                        </button> -->
                                     <!--Sign up-->
                                 @endguest
 
 
-                                @if(Auth::user())
+                                @if (Auth::user())
                                     @auth
                                         <!--Login-->
                                         <ul class="header-widget-wrap">
@@ -143,23 +141,22 @@
 
                                             <li class="header-widget">
                                                 <div class=" sf-toogle-btn">
-                                                    {{ Auth::user()->name }}<i  class="feather-power"></i></i>
+                                                    {{ Auth::user()->name }}<i class="feather-power"></i></i>
                                                 </div>
                                                 <div class="ws-toggle-popup popup-tabs-wrap-section user-welcome-area">
-                                                    @if(Auth::user())
-
+                                                    @if (Auth::user())
                                                         <ul class="user-welcome-list">
-                                                            <li><strong>Welcome , <span
-                                                                        class="site-text-primary">Auth User here</span></strong>
+                                                            <li><strong>Welcome , <span class="site-text-primary">Auth User
+                                                                        here</span></strong>
                                                             </li>
-                                                            <a class="dropdown-item" onclick="logout()" href="#">Logout</a>
+                                                            <a class="dropdown-item" onclick="logout()"
+                                                                href="#">Logout</a>
 
                                                             <form id="logout-form" action="{{ route('logout') }} "
                                                                 method="post"> @csrf</form>
 
 
                                                         </ul>
-
                                                     @endif
                                                 </div>
                                             </li>
@@ -246,7 +243,8 @@
                                             class="fa fa-twitter"></i></a></li>
                                 <li><a target="#" href="https://www.facebook.com/Cudo-Services-102028239182951"><i
                                             class="fa fa-facebook"></i></a></li>
-                                <li><a target="#" href="https://www.instagram.com/cudoservices/"><i class="fa fa-instagram"></i></a></li>
+                                <li><a target="#" href="https://www.instagram.com/cudoservices/"><i
+                                            class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
 
@@ -286,14 +284,14 @@
                             <!--Login Form-->
                             <div id="Upcoming" class=" container tab-pane active">
                                 <div class="sf-tabs-content">
-                                    <form method="POST" action="{{route('login')}}" class="aon-login-form">
+                                    <form method="POST" action="{{ route('login') }}" class="aon-login-form">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" name="email" type="text" placeholder="Email"
-                                                            required>
+                                                        <input class="form-control sf-form-control" name="email"
+                                                            type="text" placeholder="Email" required>
                                                         <i class="aon-input-icon fa fa-user"></i>
                                                     </div>
                                                 </div>
@@ -301,17 +299,19 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" name="password" type="password"
-                                                            placeholder="Password" required>
+                                                        <input class="form-control sf-form-control" name="password"
+                                                            type="password" placeholder="Password" required>
                                                         <i class="aon-input-icon fa fa-lock"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group d-flex aon-login-option justify-content-between">
+                                                <div
+                                                    class="form-group d-flex aon-login-option justify-content-between">
                                                     <div class="aon-login-opleft">
                                                         <div class="checkbox sf-radio-checkbox">
-                                                            <input id="td2_2" name="abc" value="five" type="checkbox">
+                                                            <input id="td2_2" name="abc" value="five"
+                                                                type="checkbox">
                                                             <label for="td2_2">Keep me logged</label>
                                                         </div>
                                                     </div>
@@ -321,7 +321,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button type="submit" class="site-button w-100">Login <i class="feather-arrow-right"></i> </button>
+                                                <button type="submit" class="site-button w-100">Login <i
+                                                        class="feather-arrow-right"></i> </button>
                                             </div>
 
                                         </div>
@@ -332,95 +333,99 @@
                             <!--Sign up Form-->
                             <div id="Past" class="tab-pane">
                                 <div class="sf-tabs-content">
-                                    <form method="POST" action=" route('register') }}"
-                                        class="aon-login-form">
+                                    <form method="POST" action=" route('register') }}" class="aon-login-form">
                                         @csrf
 
-                                        @foreach($errors->all() as $error)
+                                        @foreach ($errors->all() as $error)
                                             <p class="text-danger text-center">{{ $error }}</p>
                                         @endforeach
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label >User Type</label>
-                                                    <select  name="type" class="selectpicker">
+                                                    <label>User Type</label>
+                                                    <select name="type" class="selectpicker">
                                                         <option value=""></option>
                                                         <option value="client">Client</option>
                                                         <option value="vendor">Vendor</option>
 
                                                     </select>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" id="name"
-                                                            name="name" type="text" placeholder="Name" required>
-                                                        <i class="aon-input-icon fa fa-user"></i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="aon-inputicon-box">
+                                                            <input class="form-control sf-form-control" id="name"
+                                                                name="name" type="text" placeholder="Name"
+                                                                required>
+                                                            <i class="aon-input-icon fa fa-user"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" id="phone"
-                                                            name="phone" type="number" placeholder="Phone" required>
-                                                        <i class="aon-input-icon fa fa-phone"></i>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="aon-inputicon-box">
+                                                            <input class="form-control sf-form-control" id="phone"
+                                                                name="phone" type="number" placeholder="Phone"
+                                                                required>
+                                                            <i class="aon-input-icon fa fa-phone"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" id="email"
-                                                            name="email" type="text" placeholder="Email" required>
-                                                        <i class="aon-input-icon fa fa-envelope-o"></i>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="aon-inputicon-box">
+                                                            <input class="form-control sf-form-control" id="email"
+                                                                name="email" type="text" placeholder="Email"
+                                                                required>
+                                                            <i class="aon-input-icon fa fa-envelope-o"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control" id="password"
-                                                            name="password" type="password" placeholder="Password"
-                                                            required>
-                                                        <i class="aon-input-icon fa fa-lock"></i>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="aon-inputicon-box">
+                                                            <input class="form-control sf-form-control" id="password"
+                                                                name="password" type="password"
+                                                                placeholder="Password" required>
+                                                            <i class="aon-input-icon fa fa-lock"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="aon-inputicon-box">
-                                                        <input class="form-control sf-form-control"
-                                                            id="password_confirmation" name="password_confirmation"
-                                                            type="password" placeholder="Confirm Password" required>
-                                                        <i class="aon-input-icon fa fa-lock"></i>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="aon-inputicon-box">
+                                                            <input class="form-control sf-form-control"
+                                                                id="password_confirmation"
+                                                                name="password_confirmation" type="password"
+                                                                placeholder="Confirm Password" required>
+                                                            <i class="aon-input-icon fa fa-lock"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group sign-term-con">
-                                                    <div class="checkbox sf-radio-checkbox">
-                                                        <input id="td33" name="abc" value="five" required
-                                                            type="checkbox">
-                                                        <label for="td33">I've read and agree with your <a
-                                                                href="#">Privacy Policy</a> and <a href="#">Terms &
-                                                                Conditions</a> </label>
+                                                <div class="col-md-12">
+                                                    <div class="form-group sign-term-con">
+                                                        <div class="checkbox sf-radio-checkbox">
+                                                            <input id="td33" name="abc" value="five"
+                                                                required type="checkbox">
+                                                            <label for="td33">I've read and agree with your <a
+                                                                    href="#">Privacy Policy</a> and <a
+                                                                    href="#">Terms &
+                                                                    Conditions</a> </label>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                                <button type="submit" class="site-button w-100">Submit <i
+                                                        class="feather-arrow-right"></i> </button>
+
+
                                             </div>
-
-                                            <button type="submit" class="site-button w-100">Submit <i
-                                                    class="feather-arrow-right"></i> </button>
-
-
-                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -467,7 +472,7 @@
     {{-- sweet alert --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if(session()->has('success'))
+    @if (session()->has('success'))
         <script>
             Swal.fire({
                 title: "Successful!",
@@ -475,11 +480,10 @@
                 icon: "success",
                 button: " Aww yess!",
             });
-
         </script>
     @endif
 
-    @if(session()->has('error'))
+    @if (session()->has('error'))
         <script>
             Swal.fire({
                 title: "Ooops!",
@@ -487,7 +491,6 @@
                 icon: "error",
                 button: " Ok",
             });
-
         </script>
     @endif
 
@@ -495,7 +498,6 @@
         function logout() {
             $('#logout-form').submit();
         }
-
     </script>
 
 

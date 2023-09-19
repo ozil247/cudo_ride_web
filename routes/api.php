@@ -28,5 +28,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/vehicle-reg', [VehicleController::class, 'vehicleReg'])->name('vehicleReg');
+    Route::post('/driver/complete-details', [VehicleController::class, 'uploadFiles'])->name('uploadFiles');
 
 });

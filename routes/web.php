@@ -25,6 +25,8 @@ Auth::routes();
 //Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/upload-file', [App\Http\Controllers\HelperController::class, 'uploadFile'])->name('uploadFile');
+Route::get('/upload-image', [App\Http\Controllers\HelperController::class, 'uploadImage'])->name('uploadImage');
 
 //});
 

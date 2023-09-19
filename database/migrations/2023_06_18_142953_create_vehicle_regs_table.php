@@ -21,6 +21,11 @@ return new class extends Migration
             $table->string('year');
             $table->string('plate_number');
             $table->string('colour');
+            $table->string('ownership')->nullable();
+            $table->string('interior')->nullable();
+            $table->string('exterior')->nullable();
+            $table->string('video')->nullable();
+            $table->string('license')->nullable();
             $table->timestamps();
         });
     }
