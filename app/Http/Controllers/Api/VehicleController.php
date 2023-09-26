@@ -22,7 +22,7 @@ class VehicleController extends Controller
 
         $vechile_reg = new VehicleReg();
         if (Auth::user()->vehicle != null) {
-            $vechile_reg =Auth::user()->vehicle;
+            $vechile_reg = Auth::user()->vehicle;
         }
 
         $vechile_reg->user_id = Auth::user()->id;
@@ -33,7 +33,7 @@ class VehicleController extends Controller
         $vechile_reg->colour = $request->colour;
         $vechile_reg->save();
 
-       
+
 
 
 
@@ -60,10 +60,10 @@ class VehicleController extends Controller
         $vechile_reg->ownership = $ownership;
         $vechile_reg->interior = $interior;
         $vechile_reg->exterior = $exterior;
-
-        dd($vechile_reg);
-
         $vechile_reg->save();
 
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

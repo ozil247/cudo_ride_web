@@ -22,21 +22,20 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     public function welcome()
-     {
-         return view('welcome');
-     }
+    public function welcome()
+    {
+        return view('welcome');
+    }
 
 
 
     public function index()
     {
-        if (Auth::user()->type == 'user'){
+        if (Auth::user()->type == 'user') {
             return redirect()->route('welcome');
-        }  else if ( Auth::user()->type == 'driver'){
+        } else if (Auth::user()->type == 'driver') {
             return redirect()->route('dashboard');
-
-        } else if ( Auth::user()->type == 'admin'){
+        } else if (Auth::user()->type == 'admin') {
             return redirect()->route('admin');               //to redirect to different user type dashboard
         }
     }

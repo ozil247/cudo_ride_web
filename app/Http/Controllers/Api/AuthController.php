@@ -50,7 +50,6 @@ class AuthController extends Controller
 
 
 
-
     public function otpVerify(Request $request)
     {
         $request->validate([
@@ -78,20 +77,17 @@ class AuthController extends Controller
     }
 
 
-
-
-
     public function register(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'email' => 'required',
             'phone' => 'nullable|min:10',
             'gender' => 'required',
             'state' => 'required',
             'age' => 'required',
             'address' => 'required',
-            'type' => 'required'
-
+            'type' => 'required',
         ]);
 
         $user = User::where('phone', $request->phone)->first();
@@ -111,8 +107,6 @@ class AuthController extends Controller
         $user->address = $request->address;
         $user->type = $request->type;
         $user->save();
-
-
 
 
         // if ($request->has('image')) {
