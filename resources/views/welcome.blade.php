@@ -84,7 +84,7 @@
                     <!--Title Section Start-->
                     <div class="section-head aon-title-center white">
                         <span class="aon-sub-title">Steps</span>
-                        <h2 class="sf-title">How It Work</h2>
+                        <h2 class="sf-title">How It Works</h2>
                     </div>
                     <!--Title Section Start End-->
                     <div class="section-content">

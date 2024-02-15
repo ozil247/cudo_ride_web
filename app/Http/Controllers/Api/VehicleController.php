@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperController;
 use Illuminate\Support\Facades\Auth;
-
+use PHPUnit\TextUI\Help;
 
 class VehicleController extends Controller
 {
@@ -43,20 +43,40 @@ class VehicleController extends Controller
 
     }
 
+    function uploadPhoto(Request $request){
+        $request -> validate(([
+            'photo' => 'required',
+            'license' => 'required',
+        ]));
+
+        $photo = HelperController::uploadImage($request ->photo,'photo');
+        $license = HelperController::uploadImage($request -> license, 'license');
+        $vechile_reg = Auth::user()->vehicle;
+        $vechile_reg->photo = $photo;
+        $vechile_reg->license = $license;
+
+        $vechile_reg->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+
+
     function uploadFiles(Request $request) {
         $request->validate([
             'ownership' => 'required',
             'interior' => 'required',
             'exterior' => 'required',
+
             // 'video' => 'required',
         ]);
 
         $ownership = HelperController::uploadImage($request->ownership, 'ownership');
         $interior = HelperController::uploadImage($request->interior, 'interior');
         $exterior = HelperController::uploadImage($request->exterior, 'exterior');
-
         $vechile_reg = Auth::user()->vehicle;
-
         $vechile_reg->ownership = $ownership;
         $vechile_reg->interior = $interior;
         $vechile_reg->exterior = $exterior;
@@ -66,4 +86,7 @@ class VehicleController extends Controller
             'success' => true
         ]);
     }
+
+    
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Otp;
 use App\Models\User;
 use GrahamCampbell\ResultType\Success;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use PhpParser\Node\NullableType;
 
@@ -21,10 +22,10 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
 
         if ($user != null) {
-             return response()->json([
-               'success' => false,
-               'message' => 'Number already exist'
-             ]);
+            return response()->json([
+                'success' => false,
+                'message' => 'Number already exist'
+            ]);
         }
         \Log::info($request->phone);
         $otp_code = rand(1000, 9999); //generates random number for the otp
@@ -77,6 +78,28 @@ class AuthController extends Controller
     }
 
 
+
+    public function userTypes(Request $request)
+    {
+        $request->validate(['type' => 'required',]);
+
+
+        $type = new User();
+        $type->type = $request->type;
+        $type->save();
+
+        $token = $type->createToken('mobile');
+
+
+        return response()->json([
+            'success' => true,
+            'token' => $token->plainTextToken,
+        ]);
+    }
+
+
+
+
     public function register(Request $request)
     {
         $request->validate([
@@ -87,7 +110,7 @@ class AuthController extends Controller
             'state' => 'required',
             'age' => 'required',
             'address' => 'required',
-            'type' => 'required',
+
         ]);
 
         $user = User::where('phone', $request->phone)->first();
@@ -105,7 +128,6 @@ class AuthController extends Controller
         $user->state = $request->state;
         $user->age = $request->age;
         $user->address = $request->address;
-        $user->type = $request->type;
         $user->save();
 
 
@@ -153,7 +175,10 @@ class AuthController extends Controller
         $otp = new Otp();
         $otp->phone = $request->phone;
         $otp->otp = $otp_code;
-        $otp->save();
+
+        $otp->update();
+
+
         $response = Http::post('https://api.ng.termii.com/api/sms/send', [
             'api_key' => 'TL3TDtmoeBPD1PzWAZ8IcLdvNZNEXUqRAI349BCNxfJCsjVtXBWwzCbGYKe29X',
             'to' => $request->phone,
@@ -167,5 +192,4 @@ class AuthController extends Controller
             'success' => true,
         ]);
     }
-
 }
